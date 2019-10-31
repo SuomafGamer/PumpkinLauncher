@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <title>Pumpkin Launcher</title>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="styles/elements.css">
+    <link rel="stylesheet" type="text/css" href="styles/interfaces.css">
+    <link rel="stylesheet" type="text/css" href="styles/checkboxes.css">
+    <link rel="stylesheet" type="text/css" href="styles/reusable.css">
+    <link rel="stylesheet" type="text/css" href="styles/gameObjects.css">
+    <!-- Listeners -->
+    <script src="src/listeners.js"></script>
+    <!-- Main Code -->
+    <script src="src/achievements.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/interface.js"></script>
+    <script src="src/collectable.js"></script>
+    <script src="src/debris.js"></script>
+    <script src="src/audio.js"></script>
+    <!-- New Prototypes -->
+    <script src="src/htmlPrototypes.js"></script>
+</head>
+
+<body class="noselect">
+
+    <!-- The container of everything which makes the game -->
+    <div id="gameContainer">
+
+        <!-- Game Objects -->
+        <div id="game">
+            <div id="gameBG"></div>
+            <div id="ground"></div>
+            <img class="gameObj stars" src="images/Stars.svg" style="left: 0; bottom: 0;" />
+            <img class="gameObj stars" src="images/Stars.svg" style="left: 2560px; bottom: 0;" />
+            <img class="gameObj mountain" src="images/Mountains1.svg" style="left: 0; bottom: 250px;" />
+            <img class="gameObj mountain" src="images/Mountains2.svg" style="left: 1280px; bottom: 250px;" />
+            <img class="gameObj mountain" src="images/Mountains3.svg" style="left: 2560px; bottom: 250px;" />
+            <img class="gameObj mountain" src="images/Mountains4.svg" style="left: 3840px; bottom: 250px;" />
+            <img class="gameObj ground" src="images/Ground1.svg" style="left: 0; bottom: 0;" />
+            <img class="gameObj ground" src="images/Ground2.svg" style="left: 1280px; bottom: 0;" />
+            <img class="gameObj ground" src="images/Ground3.svg" style="left: 2560px; bottom: 0;" />
+            <img class="gameObj ground" src="images/Ground4.svg" style="left: 3840px; bottom: 0;" />
+            <img class="gameObj tree" src="images/Tree1.svg" style="left: 0; bottom: 140px;" />
+            <img class="gameObj tree" src="images/Tree1.svg" style="left: 600px; bottom: 160px;" />
+            <img class="gameObj tree" src="images/Tree1.svg" style="left: 1800px; bottom: 180px;" />
+            <img class="gameObj tree" src="images/Tree1.svg" style="left: 1200px; bottom: 200px;" />
+            <img id="pumpkin" src="images/Pumpkin.svg" />
+            <div id="guts" style="display: none;">
+                <img id="guts1" src="images/Guts1.svg" style="display: none;" />
+                <img id="guts2" src="images/Guts2.svg" style="display: none;" />
+                <img id="guts3" src="images/Guts3.svg" style="display: none;" />
+                <img id="guts4" src="images/Guts4.svg" style="display: none;" />
+                <img id="guts5" src="images/Guts5.svg" style="display: none;" />
+                <img id="guts6" src="images/Guts6.svg" style="display: none;" />
+                <img id="guts7" src="images/Guts7.svg" style="display: none;" />
+                <img id="guts8" src="images/Guts8.svg" style="display: none;" />
+                <img id="guts9" src="images/Guts9.svg" style="display: none;" />
+                <img id="guts10" src="images/Guts10.svg" style="display: none;" />
+                <img id="guts11" src="images/Guts11.svg" style="display: none;" />
+                <img id="guts12" src="images/Guts12.svg" style="display: none;" />
+                <img id="guts13" src="images/Guts13.svg" style="display: none;" />
+                <img id="guts14" src="images/Guts14.svg" style="display: none;" />
+                <img id="guts15" src="images/Guts15.svg" style="display: none;" />
+            </div>
+            <div id="booster" style="display: none;">
+                <img id="bFire1" src="images/BFire1.svg" style="display: none;" />
+                <img id="bFire2" src="images/BFire2.svg" style="display: none;" />
+                <img id="bFire3" src="images/BFire3.svg" style="display: none;" />
+                <img id="bFire4" src="images/BFire4.svg" style="display: none;" />
+                <img id="bFire5" src="images/BFire5.svg" style="display: none;" />
+                <img id="bFire6" src="images/BFire6.svg" style="display: none;" />
+                <img src="images/Booster.svg" />
+            </div>
+            <div id="catapult" style="left: 200px;">
+                <div id="catapultArm">
+                    <div id="catapultPumpkinCoord"></div>
+                    <img src="images/CatapultArm.svg" />
+                </div>
+                <img id="catapultBase" src="images/CatapultBase.svg" />
+            </div>
+        </div>
+
+        <!-- User Interface -->
+        <div id="ui">
+            <!-- The display for the pumpkin when it is higher than the screen -->
+            <div id="skypoint" style="display: none;">
+                <div id="skyImageContainer">
+                    <img id="skyImage" src="images/Pumpkin.svg" />
+                </div>
+                <div id="skyDistance">200</div>
+            </div>
+            <!-- Fuel Indicator -->
+            <div id="fuelContainer">
+                <div class="relative">
+                    <img id="fuelWarning" src="images/FuelGlow.svg" style="opacity: 0;" />
+                    <img src="images/FuelBorder.svg" />
+                    <div id="fuelFill">
+                        <img src="images/FuelFill.svg" />
+                    </div>
+                    <span id="fuelText">
+                        <span id="fuelIndicator">100</span>%
+                    </span>
+                </div>
+            </div>
+            <!-- Text Feedback (like on launch) -->
+            <div id="textFeedback" class="absolute-full-center"></div>
+            <!-- Angle Mechanism -->
+            <div id="angleContainer" class="absolute-full-center">
+                <div id="angleGauge">
+                    <div class="relative">
+                        <span>
+                            Launch Angle<br />
+                            <span id="angleIndicator">45</span>deg
+                        </span>
+                        <img id="angleFill" src="images/AngleFill.svg" />
+                        <div id="angleLine"></div>
+                        <img src="images/AngleBorder.svg" />
+                    </div>
+                </div>
+            </div>
+            <!-- Power Gauge -->
+            <div id="powerContainer" class="absolute-full-center">
+                <div id="powerGauge">
+                    <div class="relative">
+                        <span>
+                            Launch Power<br />
+                            <span id="powerIndicator">100</span>%
+                        </span>
+                        <div id="powerFill">
+                            <img src="images/PowerFill.svg" />
+                        </div>
+                        <img src="images/PowerBorder.svg" />
+                    </div>
+                </div>
+            </div>
+            <!-- Round Stats -->
+            <div id="roundStatsContainer" class="absolute-full-center">
+                <div id="roundStats">
+                    <div class="relative">
+                        <div class="title">
+                            <span>Round Stats</span>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-panel">
+                                <div id="roundDistance" class="stat">
+                                    <span>Distance</span>
+                                    <span class="value">0</span> ft
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span> ft)
+                                    </span>
+                                </div>
+                                <div id="roundFastest" class="stat">
+                                    <span>Fastest</span>
+                                    <span class="value">0</span> ft/s
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span> ft/s)
+                                    </span>
+                                </div>
+                                <div id="roundHighest" class="stat">
+                                    <span>Highest</span>
+                                    <span class="value">0</span> ft
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span> ft)
+                                    </span>
+                                </div>
+                                <div id="roundDuration" class="stat">
+                                    <span>Duration</span>
+                                    <span class="value">0</span>
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span>)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="spacer-25w"></div>
+                            <div class="stat-panel">
+                                <div id="candyCornCollected" class="stat">
+                                    <span>Candy Corn</span>
+                                    <span class="value">0</span>
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span>)
+                                    </span>
+                                </div>
+                                <div id="lollipopsCollected" class="stat">
+                                    <span>Lollipops</span>
+                                    <span class="value">0</span>
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span>)
+                                    </span>
+                                </div>
+                                <div id="fuelCollected" class="stat">
+                                    <span>Fuel</span>
+                                    <span class="value">0</span>
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span>)
+                                    </span>
+                                </div>
+                                <div id="batsCollected" class="stat">
+                                    <span>Bats</span>
+                                    <span class="value">0</span>
+                                    <span class="record glow-soft" style="display: none;">
+                                        (record +<span class="rec-val"></span>)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Frames per second counter -->
+            <span class="fps"></span>
+            <span id="distanceTracker">
+                <div>
+                    <span id="speed">0</span> ft/s
+                </div>
+                <div>
+                    <span id="distance">0</span> ft
+                </div>
+            </span>
+            <!-- Launch Process -->
+            <div id="launchProcess">
+                <div id="launchStep1" class="margin">
+                    <span class="show-for-mobile glow-soft">Tap anywhere to begin</span>
+                    <span class="hide-for-mobile glow-soft">Click anywhere to begin</span>
+                </div>
+                <div id="launchStep2">
+                    <button class="clickable" onclick="setAngle()">Confirm Angle</button>
+                </div>
+                <div id="launchStep3">
+                    <button class="clickable" onclick="doLaunch()">Launch</button>
+                </div>
+                <div id="launchStep6" class="margin">
+                    <span class="show-for-mobile glow-soft">Tap anywhere to reset</span>
+                    <span class="hide-for-mobile glow-soft">Click anywhere to reset</span>
+                </div>
+            </div>
+            <!-- Top Left Menu Toggle -->
+            <div id="settings" class="button clickable" onclick="toggleMenu()">
+                <svg viewBox="0 0 24 24" style="fill: #52400d;">
+                    <path transform="scale(1.2, 1.2)" fill="none" d="M0 0h20v20H0V0z"></path>
+                    <path transform="scale(1.2, 1.2)"
+                        d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z">
+                    </path>
+                </svg>
+            </div>
+            <!-- The line which appears when the user drags the screen -->
+            <div id="controlLine" style="display: none;"></div>
+            <!-- The Main Menu -->
+            <div id="menu" style="display: none;">
+                <div id="dialog">
+                    <div id="dialogTabs">
+                        <button id="helpBtn" class="dialog-content-btn active clickable"
+                            onclick="showMenu('help')">Info</button>
+                        <button id="shopBtn" class="dialog-content-btn clickable"
+                            onclick="showMenu('shop')">Shop</button>
+                        <button id="optionsBtn" class="dialog-content-btn clickable"
+                            onclick="showMenu('options')">Statistics</button>
+                        <button id="achievementsBtn" class="dialog-content-btn clickable"
+                            onclick="showMenu('achievements')">Achievements [<span id="achCount"></span>]</button>
+                        <button id="audioVideoBtn" class="dialog-content-btn clickable"
+                            onclick="showMenu('audioVideo')">Audio/Video</button>
+                        <button id="creditsBtn" class="dialog-content-btn clickable"
+                            onclick="showMenu('credits')">Credits</button>
+                        <button id="cancelBtn" class="clickable-red" onclick="toggleMenu()">X</button>
+                    </div>
+                    <div id="dialogContentContainer">
+                        <!-- STATISTICS -->
+                        <div id="help" class="dialog-content">
+                            <div class="section info">
+                                <div class="title">How to Play</div>
+                                <div class="description">
+                                    1) Choose your angle:<br>
+                                    <span class="show-for-mobile">Tap</span>
+                                    <span class="hide-for-mobile">Click</span>/drag on the screen to choose your launch
+                                    angle.<br><br>
+                                    2) Choose your power:<br>
+                                    <span class="show-for-mobile">Tap</span>
+                                    <span class="hide-for-mobile">Click</span>
+                                    confirm to launch the pumpkin with the percentage of power displayed on the
+                                    gauge.<br><br>
+                                    3) Boost your pumpkin:<br>
+                                    <span class="show-for-mobile">Tap</span>
+                                    <span class="hide-for-mobile">Click</span>/drag to control your pumpkin while
+                                    airborne. You have limited fuel (displayed
+                                    on the left of the screen); pickups may be collected to replenish this.
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div class="section">
+                                <div class="title">Collectables</div>
+                                <div class="items">
+                                    <div class="achievement">
+                                        <div class="icon" style="background-image: url(images/CandyCorn.svg);"></div>
+                                        <div class="text">
+                                            <div>Candy Corn</div>
+                                            <div class="description">Currency, used to purchase upgrades</div>
+                                        </div>
+                                    </div>
+                                    <div class="achievement">
+                                        <div class="icon" style="background-image: url(images/Lollipop.svg);"></div>
+                                        <div class="text">
+                                            <div>Lollipop</div>
+                                            <div class="description">Bounces the pumpkin into the air</div>
+                                        </div>
+                                    </div>
+                                    <div class="achievement">
+                                        <div class="icon" style="background-image: url(images/GasCan.svg);"></div>
+                                        <div class="text">
+                                            <div>Fuel</div>
+                                            <div class="description">Refills your booster gauge by 25%</div>
+                                        </div>
+                                    </div>
+                                    <div class="achievement">
+                                        <div class="icon" style="background-image: url(images/Bat.svg);"></div>
+                                        <div class="text">
+                                            <div>Bat</div>
+                                            <div class="description">Throws the pumpkin towards the ground</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SHOP UPGRADES -->
+                        <div id="shop" class="dialog-content" style="display: none;">
+                            <div class="section">
+                                <div class="title" style="margin-bottom: 0; text-align: center;">
+                                    Shop
+                                    <span style="position: absolute; right: 0;">
+                                        <span id="candyCornCount">0</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div id="upgdEndurance" class="section">
+                                <div class="title">
+                                    Endurance
+                                    <span class="spacer-25w"></span>
+                                    [<span class="count">0</span>/1]
+                                    <span class="spacer-25w"></span>
+                                    <span>
+                                        Cost:
+                                        <span class="cost">50</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                    <span class="clickable" style="position: absolute; right: 0;"
+                                        onclick="game.buyUpgd('upgdEndurance')">
+                                        Buy
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    The pumpkin can take an additional hit before exploding.
+                                    Currently <span class="current">0</span>
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div id="upgdPower" class="section">
+                                <div class="title">
+                                    Launch Power
+                                    <span class="spacer-25w"></span>
+                                    [<span class="count">0</span>/10]
+                                    <span class="spacer-25w"></span>
+                                    <span>
+                                        Cost:
+                                        <span class="cost">9</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                    <span class="clickable" style="position: absolute; right: 0;"
+                                        onclick="game.buyUpgd('upgdPower')">
+                                        Buy
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    Launch the pumpkin with 10% more force.
+                                    Currently <span class="current">100</span>%
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div id="upgdFuelCap" class="section">
+                                <div class="title">
+                                    Fuel Capacity
+                                    <span class="spacer-25w"></span>
+                                    [<span class="count">0</span>/10]
+                                    <span class="spacer-25w"></span>
+                                    <span>
+                                        Cost:
+                                        <span class="cost">9</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                    <span class="clickable" style="position: absolute; right: 0;"
+                                        onclick="game.buyUpgd('upgdFuelCap')">
+                                        Buy
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    Store 10% more fuel in order to boost longer.
+                                    Currently <span class="current">100</span>%
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div id="upgdBoostPwr" class="section">
+                                <div class="title">
+                                    Booster Power
+                                    <span class="spacer-25w"></span>
+                                    [<span class="count">0</span>/10]
+                                    <span class="spacer-25w"></span>
+                                    <span>
+                                        Cost:
+                                        <span class="cost">9</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                    <span class="clickable" style="position: absolute; right: 0;"
+                                        onclick="game.buyUpgd('upgdBoostPwr')">
+                                        Buy
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    The booster applies 5% more force to the pumpkin.
+                                    Currently <span class="current">100</span>%
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div id="upgdBounce" class="section">
+                                <div class="title">
+                                    Bouncy Wouncy
+                                    <span class="spacer-25w"></span>
+                                    [<span class="count">0</span>/10]
+                                    <span class="spacer-25w"></span>
+                                    <span>
+                                        Cost:
+                                        <span class="cost">9</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                    <span class="clickable" style="position: absolute; right: 0;"
+                                        onclick="game.buyUpgd('upgdBounce')">
+                                        Buy
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    The pumpkin bounces 10% higher and faster off of lollipops.
+                                    Currently <span class="current">100</span>%
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div id="upgdRefuel" class="section">
+                                <div class="title">
+                                    Fuel Refills
+                                    <span class="spacer-25w"></span>
+                                    [<span class="count">0</span>/10]
+                                    <span class="spacer-25w"></span>
+                                    <span>
+                                        Cost:
+                                        <span class="cost">9</span>
+                                        <img src="images/CandyCorn.svg" height="30px">
+                                    </span>
+                                    <span class="clickable" style="position: absolute; right: 0;"
+                                        onclick="game.buyUpgd('upgdRefuel')">
+                                        Buy
+                                    </span>
+                                </div>
+                                <div class="description">
+                                    Increase the amount that gas cans refuel by 1%.
+                                    Currently <span class="current">25</span>%
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STATISTICS -->
+                        <div id="options" class="dialog-content" style="display: none;">
+                            <div class="section">
+                                <div class="title">Statistics</div>
+                                <div class="description">
+                                    <div id="cookiesOn" class="options" style="display: none;">
+                                        <span class="green">
+                                            your stats and achievements are being saved
+                                        </span>
+                                        <span class="spacer-25w"></span>
+                                        <span class="clickable clickable-red" onclick="achieve.deleteData()">
+                                            Delete Data
+                                        </span>
+                                    </div>
+                                    <div id="cookiesOff" class="options" style="display: none;">
+                                        <span class="red">
+                                            your stats are not being saved, reload and accept cookies to change this
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="spacer-25h"></div>
+                                <!-- Play Stats -->
+                                <div class="stats-container">
+                                    <div id="statTotalTravelled" class="stat">
+                                        <span>Total Travelled:</span>
+                                        <span class="value">0</span>
+                                        <span>ft</span>
+                                    </div>
+                                    <div id="statFastestSpeed" class="stat">
+                                        <span>Fastest Speed:</span>
+                                        <span class="value">0</span>
+                                        <span>ft/s</span>
+                                    </div>
+                                    <div id="statBestDistance" class="stat">
+                                        <span>Longest Distance:</span>
+                                        <span class="value">0</span>
+                                        <span>ft</span>
+                                    </div>
+                                    <div id="statGreatestHeight" class="stat">
+                                        <span>Greatest Height:</span>
+                                        <span class="value">0</span>
+                                        <span>ft</span>
+                                    </div>
+                                    <div id="statTotalTicks" class="stat">
+                                        <span>Total Round Time:</span>
+                                        <span class="value">0s</span>
+                                    </div>
+                                    <div id="statMostTicks" class="stat">
+                                        <span>Longest Round:</span>
+                                        <span class="value">0s</span>
+                                    </div>
+                                    <div id="statLaunches" class="stat">
+                                        <span>Total Launches:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                </div>
+                                <div class="spacer-25h"></div>
+                                <!-- Collectable Stats -->
+                                <div class="stats-container">
+                                    <div id="statCandyCorn" class="stat">
+                                        <span>Total Candy Corns:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statCandyCornRound" class="stat">
+                                        <span>Most in a Round:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statLollipop" class="stat">
+                                        <span>Total Lollipops:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statLollipopRound" class="stat">
+                                        <span>Most in a Round:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statFuel" class="stat">
+                                        <span>Total Fuel:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statFuelRound" class="stat">
+                                        <span>Most in a Round:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statBats" class="stat">
+                                        <span>Total Bats:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                    <div id="statBatsRound" class="stat">
+                                        <span>Most in a Round:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ACHIEVEMENTS: CONTENTS GENERATED -->
+                        <div id="achievements" class="dialog-content" style="display: none;"></div>
+                        <!-- AUDIO / VIDEO SETTINGS -->
+                        <div id="audioVideo" class="dialog-content" style="display: none;">
+                            <div class="section">
+                                <div class="title">Video</div>
+                                <div class="options">
+                                    <span>Size</span>
+                                    <div class="spacer-25w"></div>
+                                    <span id="sizeOriginal" class="clickable"
+                                        onclick="rescale(false); updateMenu();">Original</span>
+                                    <span id="sizeStretch" class="clickable active"
+                                        onclick="rescale(true); updateMenu();">Stretch</span>
+                                </div>
+                                <div class="spacer-25h"></div>
+                                <div class="options">
+                                    <span>Fullscreen</span>
+                                    <div class="spacer-25w"></div>
+                                    <span id="fullscreenOn" class="clickable"
+                                        onclick="openFullscreen(false); updateMenu();">On</span>
+                                    <span id="fullscreenOff" class="clickable active"
+                                        onclick="closeFullscreen(true); updateMenu();">Off</span>
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div class="section">
+                                <div class="title">Music</div>
+                                <div id="miscContainer">
+                                    <audio id="music" controls loop>
+                                        <!-- <source src="audio/NightOfChaos.mp3" type="audio/mpeg"> -->
+                                    </audio>
+                                    <div class="description">
+                                        Night of Chaos
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div class="section">
+                                <div class="title">Sound</div>
+                                <div id="soundFX">
+                                    <div class="sound-effect">
+                                        <audio id="fxLaunch" controls>
+                                            <source src="audio/Whip.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Pumpkin Launch
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxSplat" controls>
+                                            <source src="audio/Splat.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Pumpkin Impact
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxAchieve" controls>
+                                            <source src="audio/Notification_Bell_Glassy_Chime.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Achievement
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxFire" controls loop>
+                                            <source src="audio/Fire.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Boosting
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxCandyCorn" controls>
+                                            <source src="audio/Stone.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Collectable: Candy Corn
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxLollipop" controls>
+                                            <source src="audio/Spring_Wooden_Ruler.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Collectable: Lollipop
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxFuel" controls>
+                                            <source src="audio/Liquid_Slosh.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Collectable: Gas Can
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxBat" controls>
+                                            <source src="audio/Impact_Ground.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Collectable: Bat
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxCoin" controls>
+                                            <source src="audio/Coin_on_Wood.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Purchased Upgrade
+                                        </div>
+                                    </div>
+                                    <div class="sound-effect">
+                                        <audio id="fxError" controls>
+                                            <source src="audio/Error.mp3" type="audio/mpeg">
+                                        </audio>
+                                        <div class="description">
+                                            Cannot Afford Upgrade
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CREDITS -->
+                        <div id="credits" class="dialog-content" style="display: none;">
+                            <div>
+                                <div class="title">Pumpkin Launcher</div>
+                                <div class="description">
+                                    Created By Bryce Knoblauch
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div>
+                                <div class="title">Programming ~ Bryce Knoblauch</div>
+                                <div class="description">
+                                    Developed with pure HTML/CSS/Javascript, using Visual Studio Code.
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div>
+                                <div class="title">Graphics ~ Bryce Knoblauch</div>
+                                <div class="description">
+                                    All graphics created using Affinity Designer.<br>
+                                    Various assets/design based on MLP:FIM.
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div>
+                                <div class="title">Music ~ Kevin Macleod</div>
+                                <div class="description">
+                                    "Night of Chaos" Kevin MacLeod (incompetech.com)<br>
+                                    Licensed under Creative Commons: By Attribution 4.0 License<br>
+                                    http://creativecommons.org/licenses/by/4.0/
+                                </div>
+                            </div>
+                            <div class="spacer-25h"></div>
+                            <div>
+                                <div class="title">Sounds ~ ZapSplat</div>
+                                <div class="description">
+                                    https://www.zapsplat.com/
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Achievement Award: CONTENTS GENERATED -->
+            <div id="achievementAward"></div>
+            <!-- Start Screen -->
+            <div id="start">
+                <div id="pumpkinFall"></div>
+                <div id="startMenuWrapper">
+                    <div>Pumpkin Launcher</div>
+                    <button class="clickable" onclick="startGame()">Play</button>
+                    <label class="container">
+                        <input id="startFS" type="checkbox" checked />
+                        <span class="checkmark"></span>
+                        <span>enter fullscreen on start</span>
+                    </label>
+                    <label class="container" style="margin-top: 15px;">
+                        <input id="useAudio" type="checkbox" checked />
+                        <span class="checkmark"></span>
+                        <span>load music (+9MB)</span>
+                    </label>
+                    <label class="container" style="margin-top: 15px;">
+                        <input id="acceptCookies" type="checkbox" checked />
+                        <span class="checkmark"></span>
+                        <span>load/save progress with cookies</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Initialize -->
+    <script src="src/initialize.js"></script>
+</body>
+
+</html>

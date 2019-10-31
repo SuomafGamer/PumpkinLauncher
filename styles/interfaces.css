@@ -1,0 +1,271 @@
+#start {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+#start button {
+    margin: 40px 0;
+}
+.title {
+    color: #D8C382;
+}
+#startMenuWrapper {
+    background-color: #111;
+    border: 2px solid #666;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #CBAF59;
+}
+#gameContainer {
+	position: relative;
+	width: 1280px;
+	height: 720px;
+	min-width: 1280px;
+	min-height: 720px;
+    -webkit-box-shadow: 0px 0px 8px 4px #000;
+    -moz-box-shadow: 0px 0px 8px 4px #000;
+    box-shadow: 0px 0px 8px 4px #000;
+    overflow: hidden;
+}
+#game, #ui {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom left;
+}
+#gameBG {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 2560px;
+    height: 1440px;
+    background: rgb(132,58,203);
+    background: -moz-linear-gradient(0deg, rgba(132,58,203,1) 20%, rgba(72,21,149,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(132,58,203,1) 20%, rgba(72,21,149,1) 100%);
+    background: linear-gradient(0deg, rgba(132,58,203,1) 20%, rgba(72,21,149,1) 100%);
+}
+#ui {
+    z-index: 10;
+}
+#controlLine {
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    background-color: rgba(75, 150, 225, 0.50);
+    transform-origin: left center;
+}
+#controlLine:after {
+	top: -6px;
+	left: -30px;
+	border: solid transparent;
+	content: " ";
+	position: absolute;
+	border-right-color: rgba(75, 150, 225, 1);
+	border-width: 16px;
+}
+#menu {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1280px;
+    height: 720px;
+}
+#dialog {
+    border: 5px solid #725d1c;
+    background-color: #CBAF59;
+    overflow: hidden;
+    width: 1200px;
+    height: 640px;
+}
+#dialogContentContainer {
+    height: 565px;
+    overflow: auto;
+}
+.dialog-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-height: calc(100% - 20px);
+    color: black;
+    text-align: center;
+}
+#dialogTabs {
+    display: flex;
+    background-color: #725d1c;
+}
+#dialogTabs button {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 5px solid #725d1c;
+    width: auto;
+    flex-grow: 1;
+    height: 75px;
+}
+#dialogTabs button:not(:first-child) {
+    border-left: 5px solid #725d1c;
+}
+
+#ui #achievements {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#ui #achievementAward {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+}
+#ui .achievement {
+    width: 350px;
+    height: 100px;
+    border: 3px solid #86601b;
+    background-color: #FFE8A3;
+    display: flex;
+    margin: 10px 0px;
+    overflow: hidden;
+    box-shadow: 0 0 8px 3px black;
+    color: black;
+    position: relative;
+}
+#ui .locked {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.66);
+    background-image: url(../images/Padlock.svg);
+    background-repeat: no-repeat;
+}
+#ui #achievementAward .achievement {
+    margin: 0;
+}
+#ui .achievement-flash {
+    position: absolute;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+#ui .achievement > * {
+    height: 100%;
+}
+#ui .achievement .icon {
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    border-right: 3px solid #86601b;
+    background-color: #1a1a1a;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#ui .achievement .text {
+    flex-grow: 1;
+    font-size: 22px;
+    margin: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#ui .achievement .description {
+    font-size: 18px;
+    color: #222;
+    font-style: italic;
+}
+
+
+#launchProcess {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+#dialogContentContainer .title {
+    color: black;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+#dialogContentContainer .description {
+    color: #111;
+    font-size: 28px;
+}
+
+#roundStats .title {
+    text-align: center;
+}
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.stats {
+    display: flex;
+}
+.stat {
+    flex-basis: 49%;
+}
+.stat .value,
+#shop .current {
+    color: white;
+    text-shadow: -2px 0 4px #000, 2px 0 4px #000, 0 -2px 4px #000, 0 2px 4px #000;
+}
+
+#soundFX {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.sound-effect {
+    flex-basis: 49%;
+    margin-bottom: 25px;
+}
+
+#help .info .description {
+    text-align: left;
+}
+#help .items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#help .items .achievement {
+    flex-basis: 48%;
+}
+
+#shop .section {
+    text-align: left;
+}
+#shop .title {
+    position: relative
+}
+#shop .clickable {
+    color: white;
+    font-size: 28px;
+    border-radius: 10px;;
+}

@@ -1,0 +1,41 @@
+body {
+	position: absolute;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    font-size: 30px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    overflow: hidden;
+	background-color: #111;
+    color: white;
+}
+img {
+    pointer-events: none;
+}
+body.mobile .hide-for-mobile {
+    display: none;
+}
+body:not(.mobile) .show-for-mobile {
+    display: none;
+}
+button {
+    background-color: #D8C382;
+    border: 5px solid #BF9B30;
+    border-radius: 20px;
+    color: black;
+    padding: 15px;
+    width: 400px;
+    margin: 10px 0;
+    font-size: 30px;
+    cursor: pointer;
+    pointer-events: all;
+}
+button:hover, button:active {
+    background-color: #CBAF59;
+}
+audio {
+    width: 100%;
+}

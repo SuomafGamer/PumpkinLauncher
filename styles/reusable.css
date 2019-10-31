@@ -1,0 +1,140 @@
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.absolute-full-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.relative {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.absolute {
+    position: absolute;
+}
+.margin {
+    margin: 10px 0;
+}
+
+
+.button {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: #BF9B30;
+    border: 5px solid #D8C382;
+    cursor: pointer;
+}
+.button:hover, .button:active {
+    background-color: #CBAF59;
+}
+.button svg {
+    fill: #725d1c;
+}
+.button:hover svg {
+    fill: #987C26;
+}
+
+
+.clickable {
+    cursor: pointer;
+    border-color: #725d1c;
+    background: rgb(203,175,89);
+    background: -moz-linear-gradient(0deg, rgba(203,175,89,1) 0%, rgba(155,130,55,1) 97%, rgba(216,195,130,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(203,175,89,1) 0%, rgba(155,130,55,1) 97%, rgba(216,195,130,1) 100%);
+    background: linear-gradient(0deg, rgba(203,175,89,1) 0%, rgba(155,130,55,1) 97%, rgba(216,195,130,1) 100%);
+    color: black;
+}
+.clickable:hover, .clickable:active {
+    background: rgb(194, 164, 76);
+    background: -moz-linear-gradient(0deg, rgb(194, 165, 77) 0%, rgb(148, 122, 43) 97%, rgb(224, 203, 139) 100%);
+    background: -webkit-linear-gradient(0deg, rgb(194, 165, 77) 0%, rgb(148, 122, 43) 97%, rgb(224, 203, 139) 100%);
+    background: linear-gradient(0deg, rgb(194, 165, 77) 0%, rgb(148, 122, 43) 97%, rgb(224, 203, 139) 100%);
+    color: white;
+    text-shadow: -2px 0 4px #000, 2px 0 4px #000, 0 -2px 4px #000, 0 2px 4px #000;
+}
+.clickable.active {
+    background: rgb(181,153,68);
+    background: -moz-linear-gradient(0deg, rgba(181,153,68,1) 0%, rgba(122,100,33,1) 97%, rgba(216,195,130,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(181,153,68,1) 0%, rgba(122,100,33,1) 97%, rgba(216,195,130,1) 100%);
+    background: linear-gradient(0deg, rgba(181,153,68,1) 0%, rgba(122,100,33,1) 97%, rgba(216,195,130,1) 100%);
+    color: white;
+}
+.clickable-red {
+    background: rgb(102,0,0);
+    background: -moz-linear-gradient(0deg, rgba(102,0,0,1) 0%, rgba(17,0,0,1) 97%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(102,0,0,1) 0%, rgba(17,0,0,1) 97%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(102,0,0,1) 0%, rgba(17,0,0,1) 97%, rgba(255,255,255,1) 100%);
+    color: white;
+}
+.clickable-red:hover, .clickable-red:active {
+    background: rgb(153,0,0);
+    background: -moz-linear-gradient(0deg, rgba(153,0,0,1) 0%, rgba(68,0,0,1) 97%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(153,0,0,1) 0%, rgba(68,0,0,1) 97%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(153,0,0,1) 0%, rgba(68,0,0,1) 97%, rgba(255,255,255,1) 100%);
+    text-shadow: -2px 0 4px #000, 2px 0 4px #000, 0 -2px 4px #000, 0 2px 4px #000;
+}
+
+.section {
+    border: 3px solid #a68c3c;
+    background-color: #BFA44F;
+    padding: 25px;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#shop .clickable,
+.options .clickable {
+    padding: 5px 20px;
+    border: 3px solid #725d1c;
+}
+#shop .clickable,
+.options .clickable.active {
+    background: rgb(28,166,28);
+    background: -moz-linear-gradient(0deg, rgba(28,166,28,1) 0%, rgba(0,98,0,1) 97%, rgba(0,255,0,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(28,166,28,1) 0%, rgba(0,98,0,1) 97%, rgba(0,255,0,1) 100%);
+    background: linear-gradient(0deg, rgba(28,166,28,1) 0%, rgba(0,98,0,1) 97%, rgba(0,255,0,1) 100%);
+    border-color: #004500;
+}
+
+.red {
+    color: darkred;
+}
+.green {
+    color: darkgreen;
+}
+
+.glow {
+    text-shadow: 0 0 20px #FC0, 0 0 40px #F90, -5px 0 10px #000, 5px 0 10px #000, 0 -5px 10px #000, 0 5px 10px #000;
+}
+.glow-soft {
+    text-shadow: 0 0 5px #FC0, 0 0 10px #F90, -2px 0 4px #000, 2px 0 4px #000, 0 -2px 4px #000, 0 2px 4px #000;
+}
+
+span.spacer-25h,
+span.spacer-25w {
+    display: inline-block;
+}
+.spacer-25h {
+    height: 25px;
+}
+.spacer-25w {
+    width: 25px;
+}

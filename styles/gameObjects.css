@@ -1,0 +1,209 @@
+#pumpkin {
+    position: absolute;
+    width: 150px;
+    height: auto;
+}
+#catapult {
+    position: absolute;
+    width: 600px;
+    height: 480px;
+    bottom: 0;
+}
+#catapult #catapultArm {
+    position: absolute;
+    transform-origin: 360px 270px;
+    width: 600px;
+    height: 480px;
+}
+#catapult img {
+    position: absolute;
+    width: 600px;
+    height: 480px;
+}
+#catapult #catapultPumpkinCoord {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: 300px;
+    left: -10px;
+}
+
+#guts {
+    position: absolute;
+    width: 340px;
+    height: 180px;
+}
+#guts img {
+    position: absolute; 
+}
+
+#booster {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+}
+#booster img {
+    position: absolute;
+}
+.gameObj {
+    position: absolute;
+    width: auto;
+}
+.stars { height: 1440px; }
+.mountain { height: 470px; }
+.ground { height: 250px; }
+.tree { height: 400px; }
+#ground {
+    position: absolute;
+    background: rgb(61,71,4);
+    background: -moz-linear-gradient(0deg, rgba(61,71,4,1) 0%, rgba(44,85,12,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(61,71,4,1) 0%, rgba(44,85,12,1) 100%);
+    background: linear-gradient(0deg, rgba(61,71,4,1) 0%, rgba(44,85,12,1) 100%);
+    height: 250px;
+    width: 2560px;
+    left: 0;
+    bottom: 0;
+}
+#settings {
+    top: 5px;
+    left: 5px;
+}
+
+#skypoint {
+    position: absolute;
+    top: 15px;
+    left: 200px;
+}
+#skypoint #skyImageContainer {
+    width: 100px;
+    height: 100px;
+    border: 2px solid orange;
+    background-color: rgba(227, 130, 32, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#skyImage {
+    width: 90px;
+    height: 90px;
+}
+#skypoint:after {
+	top: -28px;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	position: absolute;
+	border-bottom-color: rgba(227, 130, 32, 0.5);
+	border-width: 15px;
+    margin-left: -15px;
+}
+#skypoint #skyDistance {
+    text-align: center;
+    color: orange;
+}
+
+.fps {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+#distanceTracker {
+    position: absolute;
+    text-align: right;
+    bottom: 5px;
+    right: 5px;
+}
+
+#powerGauge,
+#angleGauge {
+    position: relative;
+    height: 200px;
+    width: 400px;
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 20px;
+    border: 2px solid #D8C382;
+    padding: 10px;
+    color: #D8C382;
+}
+#powerGauge > * > *,
+#angleGauge > * > * {
+    position: absolute;
+}
+
+#powerFill {
+    width: 400px;
+    height: 200px;
+    overflow: hidden;
+}
+#powerGauge img {
+    width: 400px;
+}
+
+#angleGauge {
+    width: 350px;
+    height: 300px;
+}
+#angleGauge img {
+    width: 300px;
+    height: 300px;
+}
+#angleGauge span {
+    right: 0;
+    text-align: right;
+}
+#angleLine {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: 280px;
+    height: 5px;
+    background-color: #D8C382;
+    transform-origin: left bottom;
+    transform: rotate(-45deg);
+}
+#roundStats {
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 20px;
+    border: 2px solid #D8C382;
+    padding: 10px;
+}
+
+.text-feedback {
+    position: absolute;
+    font-size: 50px;
+    color: #D8C382;
+    transition: 1s all ease-out;
+    font-weight: bold;
+    text-align: center;
+}
+.text-end {
+    font-size: 100px;
+    opacity: 0;
+}
+
+
+#fuelContainer {
+    position: absolute;
+    top: 100px;
+    width: 100px;
+    height: 400px;
+}
+#fuelContainer img,
+#fuelContainer #fuelText {
+    position: absolute;
+    width: 100px;
+}
+#fuelContainer #fuelText {
+    top: 272.5px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 22px;
+    color: black;
+}
+#fuelContainer #fuelFill {
+    width: 100px;
+    height: 270px;
+    overflow: hidden;
+    position: relative;
+}
